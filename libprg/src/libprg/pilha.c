@@ -15,7 +15,7 @@ typedef struct pilha {
 
 }pilha_t;
 
-// Função cria pilha;
+// Função cria a pilha;
 
 pilha_t* criar_pilha(int capacidade) {
     pilha_t* pilha = malloc(sizeof(pilha_t));
@@ -24,6 +24,8 @@ pilha_t* criar_pilha(int capacidade) {
     pilha->tamanho = capacidade;
     return pilha;
 }
+
+// Função empilhar a pilha;
 
 int empilhar(pilha_t* pilha, int valor) {
 
@@ -37,6 +39,8 @@ int empilhar(pilha_t* pilha, int valor) {
     return 0;
 }
 
+// Função desempilhar a pilha;
+
 int desempilhar(pilha_t* pilha) {
 
     if (pilha->topo < 0) {
@@ -48,12 +52,19 @@ int desempilhar(pilha_t* pilha) {
     return valor;
 
 }
+
+// Função diz tamanho da pilha;
+
 int tamanho(pilha_t* pilha) {
     int N = pilha->tamanho;
     return N;
 }
 
+// Função verifica se a pilha está vazia;
+
 int vazia(pilha_t* pilha) {return pilha->topo < 0;}
+
+// Função destroi a pilha;
 
 int destruir_pilha(pilha_t* pilha) {
 
