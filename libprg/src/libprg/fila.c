@@ -36,7 +36,7 @@ int enfilerar(fila_t* fila, int valor) {
     fila->tamanho++;
 
 }
-    // TODO
+    // TODO fazer as funções a baixo
 // int desenfilerar(){}
 
 // int inicio(){}
