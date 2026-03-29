@@ -62,7 +62,11 @@ int vazia(fila_t* fila)
     if (fila->tamanho == 0) return 1;
 }
 
-// int cheia(){}
+int cheia(fila_t* fila)
+{
+    if (fila->tamanho == fila->capacidade) return 1;
+
+}
 
 int destruir_fila(fila_t* fila) {
 
