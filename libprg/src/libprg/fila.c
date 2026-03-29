@@ -57,7 +57,10 @@ int fim_fila;
 
 }
 
-// int vazia(){}
+int vazia(fila_t* fila)
+{
+    if (fila->tamanho == 0) return 1;
+}
 
 // int cheia(){}
 
