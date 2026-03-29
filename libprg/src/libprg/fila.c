@@ -40,9 +40,16 @@ int enfilerar(fila_t* fila, int valor) {
 
 // int desenfilerar(){}
 
-// int inicio(){}
+int inicio(fila_t* fila)
+{
+    int inicio_fila;
+    inicio_fila = fila->inicio;
+    return inicio_fila;
 
-int fim(fila_t* fila){
+}
+
+int fim(fila_t* fila)
+{
 
 int fim_fila;
     fim_fila = fila->fim;
