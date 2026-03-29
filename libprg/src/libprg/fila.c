@@ -36,12 +36,19 @@ int enfilerar(fila_t* fila, int valor) {
     fila->tamanho++;
 
 }
-    // TODO fazer as funções a baixo
+
+
 // int desenfilerar(){}
 
 // int inicio(){}
 
-// int fim(){}
+int fim(fila_t* fila){
+
+int fim_fila;
+    fim_fila = fila->fim;
+    return fim_fila;
+
+}
 
 // int vazia(){}
 
