@@ -3,6 +3,7 @@
 //
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct fila {
 
@@ -37,32 +38,47 @@ int enfilerar(fila_t* fila, int valor) {
 
 }
 
+int desenfilerar(fila_t* fila) {
 
-// int desenfilerar(){}
+    int valorant = fila->inicio;
 
-int inicio(fila_t* fila)
+    // Verificação de overflow;
+
+    if ( fila->tamanho == 0) {
+        printf("Erro: Fila vazia( Underflow");
+        exit(EXIT_FAILURE);
+    }
+
+    fila->inicio = (fila->inicio + 1) % fila->capacidade;
+    fila->tamanho--;
+    return valorant;
+}
+
+int fila_vazia(fila_t* fila)
 {
+    if (fila->tamanho == 0) return 1;
+}
+
+
+int fila_inicio(fila_t* fila)
+{
+    if (fila_vazia(fila)) exit(EXIT_FAILURE);
     int inicio_fila;
     inicio_fila = fila->inicio;
     return inicio_fila;
 
 }
 
-int fim(fila_t* fila)
+int fila_fim(fila_t* fila)
 {
-
-int fim_fila;
-    fim_fila = fila->fim;
-    return fim_fila;
+    if (fila_vazia(fila)) exit(EXIT_FAILURE);
+    int fim_corrigido = fila->fim - 1;
+    if (fim_corrigido < 0 ) fim_corrigido = fila->capacidade - 1;
+    return fila->elementos[fim_corrigido];
 
 }
 
-int vazia(fila_t* fila)
-{
-    if (fila->tamanho == 0) return 1;
-}
-
-int cheia(fila_t* fila)
+int fila_cheia(fila_t* fila)
 {
     if (fila->tamanho == fila->capacidade) return 1;
 

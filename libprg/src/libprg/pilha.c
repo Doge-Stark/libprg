@@ -62,7 +62,7 @@ int tamanho(pilha_t* pilha) {
 
 // Função verifica se a pilha está vazia;
 
-int vazia(pilha_t* pilha) {return pilha->topo < 0;}
+int pilha_vazia(pilha_t* pilha) {return pilha->topo < 0;}
 
 // Função destroi a pilha;
 
