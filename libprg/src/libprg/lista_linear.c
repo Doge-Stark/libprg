@@ -52,7 +52,7 @@ int retirar(lista_t* lista, int valor)
 int buscar(lista_t* lista, int valor)
 {
 
-    for (int i = lista->tamanho; i > 0 ; i--)
+    for (int i = lista->tamanho-1; i > 0 ; i--)
     {
         if ( lista->elementos[i] == valor )
         {
@@ -60,17 +60,10 @@ int buscar(lista_t* lista, int valor)
             return i;
         }
 
-        if ( i == 0)
-        {
             printf("O iten não está na lista");
-            return 0;
-        }
+            return -1;
 
     }
-
-
-
-
 
 }
 
