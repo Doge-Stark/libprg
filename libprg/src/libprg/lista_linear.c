@@ -29,18 +29,19 @@ void inserir(lista_t* lista, int valor)
 
     if (lista->tamanho == lista->capacidade)
     {
-        lista->capacidade++;
-        int* nova_capacidade = realloc(lista->elementos, lista->capacidade * sizeof(int));
+        int nova_capacidade = lista->capacidade+1;
+        int* temp = realloc(lista->elementos, nova_capacidade * sizeof(int));
 
-        if (nova_capacidade == NULL)
+        if (temp == NULL)
             {printf("Falha na realocação de memoria."); return;}
 
-        lista->elementos = nova_capacidade;
+        lista->elementos = temp;
+        lista->capacidade = nova_capacidade;
     }
 
     lista->elementos[lista->tamanho] = valor;
     lista->tamanho++;
-
+    lista->capacidade++;
 }
 int retirar();
 int buscar();
