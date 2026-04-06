@@ -43,7 +43,35 @@ void inserir(lista_t* lista, int valor)
     lista->tamanho++;
     lista->capacidade++;
 }
-int retirar();
-int buscar();
+
+int retirar(lista_t* lista, int valor)
+{
+
+}
+
+int buscar(lista_t* lista, int valor)
+{
+
+    for (int i = lista->tamanho; i > 0 ; i--)
+    {
+        if ( lista->elementos[i] == valor )
+        {
+            printf("O iten %d está na posição %d da lista.", lista->elementos[i], i);
+            return i;
+        }
+
+        if ( i == 0)
+        {
+            printf("O iten não está na lista");
+            return 0;
+        }
+
+    }
+
+
+
+
+
+}
 
 
