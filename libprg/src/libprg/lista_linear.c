@@ -2,6 +2,7 @@
 
 
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct lista {
 
@@ -23,18 +24,22 @@ lista_t* criar_criar(int capacidade)
 
 }
 
-// TODO finalizar as funções;
-
 void inserir(lista_t* lista, int valor)
 {
 
-    if (lista->tamanho == lista->capacidade) lista->capacidade = realloc(sizeof(int)*);
+    if (lista->tamanho == lista->capacidade)
+    {
+        lista->capacidade++;
+        int* nova_capacidade = realloc(lista->elementos, lista->capacidade * sizeof(int));
+
+        if (nova_capacidade == NULL)
+            {printf("Falha na realocação de memoria."); return;}
+
+        lista->elementos = nova_capacidade;
+    }
 
     lista->elementos[lista->tamanho] = valor;
     lista->tamanho++;
-
-
-
 
 }
 int retirar();
