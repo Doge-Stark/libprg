@@ -44,11 +44,6 @@ void inserir(lista_t* lista, int valor)
     lista->capacidade++;
 }
 
-int retirar(lista_t* lista, int valor)
-{
-
-}
-
 int buscar(lista_t* lista, int valor)
 {
 
@@ -67,4 +62,29 @@ int buscar(lista_t* lista, int valor)
 
 }
 
+void retirar(lista_t* lista, int valor)
+{
+    int N = buscar(lista,valor);
 
+    if ( N == -1)
+    {
+        printf("Elemento não encontrado");
+        exit(EXIT_FAILURE);
+    }
+    if ( N == lista->tamanho)
+    {
+        lista->tamanho--;
+    }
+
+    else
+
+    {
+        for ( int i = N; i != lista->tamanho-1 ; i++)
+        {
+            lista->elementos[i] = lista->elementos[i+1];
+
+        }
+        lista->tamanho--;
+
+    }
+}
