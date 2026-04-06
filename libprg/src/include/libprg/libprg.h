@@ -23,4 +23,11 @@ int fila_fim(fila_t* fila);
 int fila_cheia(fila_t* fila);
 int desenfilerar(fila_t* fila);
 
+/* === LISTA === */
+
+typedef struct lista lista_t;
+lista_t* criar_criar(int capacidade);
+int buscar(lista_t* lista, int valor);
+int retirar(lista_t* lista, int valor);
+
 #endif
