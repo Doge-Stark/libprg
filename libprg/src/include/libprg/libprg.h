@@ -27,7 +27,7 @@ int desenfilerar(fila_t* fila);
 /* === LISTA === */
 
 typedef struct lista lista_t;
-lista_t* criar_criar(int capacidade);
+lista_t* criar_lista(int capacidade);
 int buscar(lista_t* lista, int valor);
 void inserir(lista_t* lista, int valor);
 void retirar(lista_t* lista, int valor);

@@ -49,6 +49,7 @@ int desempilhar(pilha_t* pilha) {
 
     int valor = pilha->elementos[pilha->topo];
     pilha->topo--;
+    pilha->tamanho--;
     return valor;
 
 }

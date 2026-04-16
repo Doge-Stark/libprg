@@ -12,7 +12,7 @@ typedef struct lista {
 
 }lista_t;
 
-lista_t* criar_criar(int capacidade)
+lista_t* criar_lista(int capacidade)
 {
 
     lista_t* lista = malloc(sizeof(lista_t));
