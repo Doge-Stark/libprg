@@ -30,7 +30,16 @@ fila_t* criar_fila(int capacidade) {
 
 int enfilerar(fila_t* fila, int valor) {
 
-    if (fila->tamanho >= fila->capacidade) exit(EXIT_FAILURE);
+    if (fila->tamanho >= fila->capacidade) {
+        int nova_capacidade = fila->capacidade+1;
+        int* temp = realloc(fila->elementos, nova_capacidade * sizeof(int));
+
+        if (temp == NULL)
+        {printf("Falha na realocação de memoria."); return;}
+
+        fila->elementos = temp;
+        fila->capacidade = nova_capacidade;;
+    }
 
     fila->elementos[fila->fim] = valor;
     fila->fim = (fila->fim + 1) % fila->capacidade;
