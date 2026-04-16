@@ -62,7 +62,9 @@ int fila_vazia(fila_t* fila)
 
 int fila_inicio(fila_t* fila)
 {
-    if (fila_vazia(fila)) exit(EXIT_FAILURE);
+    if (fila_vazia(fila))
+        { printf("Erro: Fila vazia( Underflow"); return 1;};
+
     int inicio_fila;
     inicio_fila = fila->inicio;
     return inicio_fila;
@@ -85,12 +87,8 @@ int fila_cheia(fila_t* fila)
 }
 
 int destruir_fila(fila_t* fila) {
-
     free(fila->elementos);
     free(fila);
 
     return 0;
 }
-
-
-
