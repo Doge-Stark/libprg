@@ -3,28 +3,32 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+#define CAPACIDADE_INICIAL 10
 
 typedef struct lista {
 
     int* elementos;
     int tamanho;
     int capacidade;
+    bool ordenada;
 
-}lista_t;
+}lista_linear_t;
 
-lista_t* criar_lista(int capacidade)
+lista_linear_t* criar_lista(bool ordenada)
 {
 
-    lista_t* lista = malloc(sizeof(lista_t));
-    lista->elementos = malloc(sizeof(int) * capacidade);
+    lista_linear_t* lista = malloc(sizeof(lista_linear_t));
+    lista->elementos = malloc(sizeof(int) * CAPACIDADE_INICIAL);
     lista->tamanho = 0;
-    lista->capacidade = capacidade;
-
+    lista->capacidade = CAPACIDADE_INICIAL;
+    lista->ordenada = ordenada;
     return lista;
 
 }
 
-void inserir(lista_t* lista, int valor)
+void inserir(lista_linear_t* lista, int valor)
 {
 
     if (lista->tamanho == lista->capacidade)
@@ -44,7 +48,7 @@ void inserir(lista_t* lista, int valor)
     lista->capacidade++;
 }
 
-int buscar(lista_t* lista, int valor)
+int buscar(lista_linear_t* lista, int valor)
 {
 
     for (int i = lista->tamanho-1; i > 0 ; i--)
@@ -62,29 +66,19 @@ int buscar(lista_t* lista, int valor)
 
 }
 
-void retirar(lista_t* lista, int valor)
+void retirar(lista_linear_t* lista, int alvo)
 {
-    int N = buscar(lista,valor);
-
-    if ( N == -1)
-    {
-        printf("Elemento não encontrado");
-        exit(EXIT_FAILURE);
-    }
-    if ( N == lista->tamanho)
-    {
-        lista->tamanho--;
-    }
-
-    else
-
-    {
-        for ( int i = N; i != lista->tamanho-1 ; i++)
-        {
-            lista->elementos[i] = lista->elementos[i+1];
-
-        }
-        lista->tamanho--;
-
-    }
 }
+
+//alterar(){}
+//ordenar(){}
+//combinar(){}
+//destruir(){}
+
+//buscar {
+//          if(lista->ordenada) {indice = buscar_binario } else
+//                                                              { indice = buscar_linear }
+//                                                                                          }
+//buscar_linear(){};
+//buscar_binario(){};
+//buscar_simples(){};

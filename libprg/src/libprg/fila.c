@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct fila {
 
@@ -17,7 +18,7 @@ typedef struct fila {
 
 fila_t* criar_fila(int capacidade) {
 
-     fila_t* fila = malloc(sizeof(fila_t));
+    fila_t* fila = malloc(sizeof(fila_t));
     fila->elementos = malloc(sizeof(int) * capacidade);
     fila->inicio = 0;
     fila->fim = 0;
@@ -31,6 +32,7 @@ fila_t* criar_fila(int capacidade) {
 int enfilerar(fila_t* fila, int valor) {
 
     if (fila->tamanho >= fila->capacidade) {
+
         int nova_capacidade = fila->capacidade+1;
         int* temp = realloc(fila->elementos, nova_capacidade * sizeof(int));
 
@@ -54,7 +56,7 @@ int desenfilerar(fila_t* fila) {
     // Verificação de overflow;
 
     if ( fila->tamanho == 0) {
-        printf("Erro: Fila vazia( Underflow");
+        printf("Erro: Fila vazia( Underflow)");
         exit(EXIT_FAILURE);
     }
 
@@ -65,14 +67,15 @@ int desenfilerar(fila_t* fila) {
 
 int fila_vazia(fila_t* fila)
 {
-    if (fila->tamanho == 0) return 1;
+    if (fila->tamanho == 0) return true;
 }
 
+// TODO RESOLVER ESSE PROBLEMA AQUI GARAI!!!!
 
 int fila_inicio(fila_t* fila)
 {
     if (fila_vazia(fila))
-        { printf("Erro: Fila vazia( Underflow"); return 0;};
+        { printf("Erro: Fila vazia( Underflow)!"); exit(EXIT_FAILURE); };
 
     int inicio_fila;
     inicio_fila = fila->inicio;
@@ -91,7 +94,7 @@ int fila_fim(fila_t* fila)
 
 int fila_cheia(fila_t* fila)
 {
-    if (fila->tamanho == fila->capacidade) return 1;
+    if (fila->tamanho == fila->capacidade) return true;
 
 }
 
@@ -100,4 +103,9 @@ int destruir_fila(fila_t* fila) {
     free(fila);
 
     return 0;
+}
+
+int tamanho_fila(fila_t* fila) {
+
+    return fila->tamanho;
 }

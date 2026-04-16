@@ -23,13 +23,14 @@ int fila_inicio(fila_t* fila);
 int fila_fim(fila_t* fila);
 int fila_cheia(fila_t* fila);
 int desenfilerar(fila_t* fila);
+int tamanho_fila(fila_t* fila);
 
 /* === LISTA === */
 
-typedef struct lista lista_t;
-lista_t* criar_lista(int capacidade);
-int buscar(lista_t* lista, int valor);
-void inserir(lista_t* lista, int valor);
-void retirar(lista_t* lista, int valor);
+typedef struct lista lista_linear_t;
+lista_linear_t* criar_lista(int capacidade);
+int buscar(lista_linear_t* lista, int valor);
+void inserir(lista_linear_t* lista, int valor);
+void retirar(lista_linear_t* lista, int valor);
 
 #endif
