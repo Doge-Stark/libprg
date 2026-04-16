@@ -63,7 +63,7 @@ int fila_vazia(fila_t* fila)
 int fila_inicio(fila_t* fila)
 {
     if (fila_vazia(fila))
-        { printf("Erro: Fila vazia( Underflow"); return 1;};
+        { printf("Erro: Fila vazia( Underflow"); return 0;};
 
     int inicio_fila;
     inicio_fila = fila->inicio;
