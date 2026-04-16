@@ -10,6 +10,7 @@ int empilhar(pilha_t* pilha, int valor);
 int desempilhar(pilha_t* pilha);
 int pilha_vazia(pilha_t* pilha);
 int destruir_pilha(pilha_t* pilha);
+int tamanho_pilha(pilha_t* pilha);
 
 /* === FILA === */
 

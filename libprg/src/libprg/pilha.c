@@ -55,7 +55,7 @@ int desempilhar(pilha_t* pilha) {
 
 // Função diz tamanho da pilha;
 
-int tamanho(pilha_t* pilha) {
+int tamanho_pilha(pilha_t* pilha) {
     int N = pilha->tamanho;
     return N;
 }
