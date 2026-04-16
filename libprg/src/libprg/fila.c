@@ -35,7 +35,7 @@ int enfilerar(fila_t* fila, int valor) {
         int* temp = realloc(fila->elementos, nova_capacidade * sizeof(int));
 
         if (temp == NULL)
-        {printf("Falha na realocação de memoria."); return;}
+        {printf("Falha na realocação de memoria."); return -1;}
 
         fila->elementos = temp;
         fila->capacidade = nova_capacidade;;
