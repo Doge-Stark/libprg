@@ -16,21 +16,21 @@ int tamanho_pilha(pilha_t* pilha);
 
 typedef struct fila fila_t;
 fila_t* criar_fila(int capacidade);
-int enfilerar(fila_t* fila, int valor);
+void enfileirar_fila(fila_t* fila, int valor);
 int destruir_fila(fila_t* fila);
 int fila_vazia(fila_t* fila);
-int fila_inicio(fila_t* fila);
+int inicio_fila(fila_t* fila);
 int fila_fim(fila_t* fila);
 int fila_cheia(fila_t* fila);
-int desenfilerar(fila_t* fila);
+int desenfileirar_fila(fila_t* fila);
 int tamanho_fila(fila_t* fila);
 
 /* === LISTA === */
 
-typedef struct lista lista_linear_t;
-lista_linear_t* criar_lista(int capacidade);
-int buscar(lista_linear_t* lista, int valor);
-void inserir(lista_linear_t* lista, int valor);
-void retirar(lista_linear_t* lista, int valor);
+// typedef struct lista lista_linear_t;
+// lista_linear_t* criar_lista(int capacidade);
+// int buscar(lista_linear_t* lista, int valor);
+// void inserir(lista_linear_t* lista, int valor);
+// void retirar(lista_linear_t* lista, int valor);
 
 #endif

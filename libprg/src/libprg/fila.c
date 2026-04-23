@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "libprg/libprg.h"
 
 typedef struct fila {
 
@@ -29,40 +30,26 @@ fila_t* criar_fila(int capacidade) {
 
  }
 
-int enfilerar(fila_t* fila, int valor) {
+void enfileirar_fila(fila_t* fila, int valor) {
 
-    if (fila->tamanho >= fila->capacidade) {
-
-        int nova_capacidade = fila->capacidade+1;
-        int* temp = realloc(fila->elementos, nova_capacidade * sizeof(int));
-
-        if (temp == NULL)
-        {printf("Falha na realocação de memoria."); return -1;}
-
-        fila->elementos = temp;
-        fila->capacidade = nova_capacidade;;
-    }
+    if (fila->tamanho >= fila->capacidade) exit(EXIT_FAILURE);
 
     fila->elementos[fila->fim] = valor;
     fila->fim = (fila->fim + 1) % fila->capacidade;
     fila->tamanho++;
-
 }
 
-int desenfilerar(fila_t* fila) {
-
-    int valorant = fila->inicio;
-
-    // Verificação de overflow;
-
-    if ( fila->tamanho == 0) {
-        printf("Erro: Fila vazia( Underflow)");
+int desenfileirar_fila(fila_t* fila) {
+    if (fila->tamanho == 0) {
+        printf("Erro: Fila vazia(underflow)");
         exit(EXIT_FAILURE);
     }
 
+    int valor = fila->elementos[fila->inicio];
     fila->inicio = (fila->inicio + 1) % fila->capacidade;
     fila->tamanho--;
-    return valorant;
+
+    return valor;
 }
 
 int fila_vazia(fila_t* fila)
@@ -70,19 +57,14 @@ int fila_vazia(fila_t* fila)
     if (fila->tamanho == 0) return true;
 }
 
-// TODO RESOLVER ESSE PROBLEMA AQUI GARAI!!!!
 
-int fila_inicio(fila_t* fila)
-{
-    if (fila_vazia(fila))
-        { printf("Erro: Fila vazia( Underflow)!"); exit(EXIT_FAILURE); };
+int inicio_fila(fila_t* fila) {
+    if (fila_vazia(fila)) exit(EXIT_FAILURE);
+    int inicio = fila->elementos[fila->inicio];
+    return inicio;
 
-    int inicio_fila;
-    inicio_fila = fila->inicio;
-    return inicio_fila;
 
 }
-
 int fila_fim(fila_t* fila)
 {
     if (fila_vazia(fila)) exit(EXIT_FAILURE);
@@ -107,5 +89,7 @@ int destruir_fila(fila_t* fila) {
 
 int tamanho_fila(fila_t* fila) {
 
-    return fila->tamanho;
+    int tamanho = fila->tamanho;
+    return tamanho;
 }
+
