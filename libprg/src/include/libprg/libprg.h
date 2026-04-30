@@ -5,6 +5,7 @@
 /* === PILHA === */
 
 typedef struct pilha pilha_t;
+
 pilha_t* criar_pilha(int capacidade);
 int empilhar(pilha_t* pilha, int valor);
 int desempilhar(pilha_t* pilha);
@@ -15,6 +16,7 @@ int tamanho_pilha(pilha_t* pilha);
 /* === FILA === */
 
 typedef struct fila fila_t;
+
 fila_t* criar_fila(int capacidade);
 void enfileirar_fila(fila_t* fila, int valor);
 int destruir_fila(fila_t* fila);
@@ -32,5 +34,15 @@ int tamanho_fila(fila_t* fila);
 // int buscar(lista_linear_t* lista, int valor);
 // void inserir(lista_linear_t* lista, int valor);
 // void retirar(lista_linear_t* lista, int valor);
+
+/* === LISTA ENCADEADA === */
+
+typedef struct no no_t;
+
+no_t* criar_lista_encadeada(int dado);
+void inserir_lista_encadeada(no_t** inicio, int dado);
+no_t* buscar_lista_encadeada(int dado, no_t **inicio);
+void Destruir_lista_encadeada(no_t **inicio);
+bool remover_lista_encadeada(no_t **inicio, int dado);
 
 #endif
