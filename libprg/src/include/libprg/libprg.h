@@ -1,6 +1,6 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
-
+#include <stdbool.h>
 
 /* === PILHA === */
 
@@ -44,5 +44,14 @@ void inserir_lista_encadeada(no_t** inicio, int dado);
 no_t* buscar_lista_encadeada(int dado, no_t **inicio);
 void Destruir_lista_encadeada(no_t **inicio);
 bool remover_lista_encadeada(no_t **inicio, int dado);
+
+/* === LISTA ENCADEADA DUPLA === */
+
+
+/* === AlGORITIMOS DE ORDENAÇÃO === */
+
+/* === BUBBLE SORT  === */
+
+int* buble_sort(int *vetor, int tamanho);
 
 #endif
