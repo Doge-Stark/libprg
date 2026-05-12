@@ -30,10 +30,10 @@ pilha_t* criar_pilha(int capacidade) {
 
 int empilhar(pilha_t* pilha, int valor) {
 
-    if (pilha->topo >= pilha->tamanho) {
+    if (pilha->topo >= pilha->tamanho - 1) {
         pilha->tamanho  *= 2;
         pilha->elementos = realloc(pilha->elementos, sizeof(int) * pilha->tamanho);
-    } else
+    }
         pilha->topo++;
         pilha->elementos[pilha->topo] = valor;
 
@@ -50,7 +50,6 @@ int desempilhar(pilha_t* pilha) {
 
     int valor = pilha->elementos[pilha->topo];
     pilha->topo--;
-    pilha->tamanho--;
     return valor;
 
 }
@@ -58,8 +57,8 @@ int desempilhar(pilha_t* pilha) {
 // Função diz tamanho da pilha;
 
 int tamanho_pilha(pilha_t* pilha) {
-    int N = pilha->tamanho;
-    return N;
+
+    return pilha->tamanho;
 }
 
 // Função verifica se a pilha está vazia;
@@ -74,4 +73,15 @@ int destruir_pilha(pilha_t* pilha) {
     free(pilha);
     return 0;
 
+}
+
+// Função retorna o topo da pilha;
+
+int pilha_topo(pilha_t* pilha) {
+
+    int temp = desempilhar(pilha);
+    int topo = temp;
+    empilhar(pilha, temp);
+
+    return topo;
 }

@@ -12,6 +12,7 @@ int desempilhar(pilha_t* pilha);
 int pilha_vazia(pilha_t* pilha);
 int destruir_pilha(pilha_t* pilha);
 int tamanho_pilha(pilha_t* pilha);
+int pilha_topo(pilha_t* pilha);
 
 /* === FILA === */
 
@@ -49,8 +50,6 @@ bool remover_lista_encadeada(no_t **inicio, int dado);
 
 
 /* === AlGORITIMOS DE ORDENAÇÃO === */
-
-/* === BUBBLE SORT  === */
 
 int* buble_sort(int *vetor, int tamanho);
 int* insertion_sort(int *vetor, int tamanho);
