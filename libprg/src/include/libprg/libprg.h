@@ -53,5 +53,7 @@ bool remover_lista_encadeada(no_t **inicio, int dado);
 /* === BUBBLE SORT  === */
 
 int* buble_sort(int *vetor, int tamanho);
+int* insertion_sort(int *vetor, int tamanho);
+int* selection_sort(int *vetor, int tamanho);
 
 #endif
