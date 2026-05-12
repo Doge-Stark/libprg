@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+int* merge(int *vetor, int esquerda, int meio, int direita );
+
 int* buble_sort(int *vetor, int tamanho)
 {
     int aux = 0;
@@ -42,7 +44,6 @@ int* insertion_sort(int *vetor, int tamanho) {
         }
     }
 
-
     }
 
 int* selection_sort(int *vetor, int tamanho) {
@@ -59,11 +60,57 @@ int* selection_sort(int *vetor, int tamanho) {
 
             }
         }
+    }
+}
 
+int* merge_sort(int *vetor, int esquerda, int direita ) {
 
+    if (esquerda < direita) {
+        int meio = esquerda + (direita - esquerda) / 2;
+        merge_sort(vetor, esquerda, direita);
+        merge_sort(vetor, meio + 1, direita);
+        merge(vetor, esquerda, meio, direita);
+    }
+    return vetor;
+}
 
+int* merge(int *vetor, int esquerda, int meio, int direita ) {
+
+    int aux[direita-esquerda+1];
+
+    int i = esquerda, j = (meio +1), k = 0;
+
+    while ( i <= meio && j <= direita) {
+        if (vetor[i] <= vetor[j]) {
+            aux[k] = vetor[i];
+            i = i + 1;
+        } else {
+            aux[k] = vetor[j];
+            j = j + 1;
+        }
+        k = k + 1;
+    }
+
+    while ( i <= meio) {
+        aux[k] = vetor[i];
+        i = i + 1;
+        k = k + 1;
+    }
+
+    while ( j <= direita) {
+        aux[k] = vetor[j];
+        j = j + 1;
+        k = k + 1;
+    }
+
+    for ( int i = 0; i < esquerda; i++ ) {
+
+        vetor[i] = aux[i - esquerda];
     }
 
 
 
+
 }
+
+int* quick_sort(int *vetor, int esquerda, int direita ) {}

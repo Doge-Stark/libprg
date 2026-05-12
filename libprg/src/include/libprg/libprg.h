@@ -51,8 +51,15 @@ bool remover_lista_encadeada(no_t **inicio, int dado);
 
 /* === AlGORITIMOS DE ORDENAÇÃO === */
 
+/* === AlGORITIMOS TROCA E SELEÇÃO === */
+
 int* buble_sort(int *vetor, int tamanho);
 int* insertion_sort(int *vetor, int tamanho);
 int* selection_sort(int *vetor, int tamanho);
+
+/* === AlGORITIMOS DIVISÃO E CONQUISTA === */
+
+int* merge_sort(int *vetor, int inicio ,int direita );
+int* quick_sort(int *vetor, int inicio, int meio, int fim );
 
 #endif
