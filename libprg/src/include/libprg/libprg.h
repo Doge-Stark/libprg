@@ -60,6 +60,13 @@ int* selection_sort(int *vetor, int tamanho);
 /* === AlGORITIMOS DIVISÃO E CONQUISTA === */
 
 int* merge_sort(int *vetor, int inicio ,int direita );
-int* quick_sort(int *vetor, int inicio, int meio, int fim );
+int* quick_sort(int *vetor, int esquerda, int direita );
+
+
+/* === TABELA DE DISPERSÃO === */
+
+typedef struct noh noh_t;
+typedef struct dicionario dicionario_t;
+
 
 #endif
