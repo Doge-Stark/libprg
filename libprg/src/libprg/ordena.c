@@ -33,14 +33,14 @@ int* insertion_sort(int *vetor, int tamanho) {
 
     for (int i = 0; i < tamanho; i++) {
         sorted = vetor[i];
+        int j = vetor[i + 1];
         if ( sorted > vetor[i]) sorted = vetor[i+1];
-        while (vetor[i + 1] > sorted && i != tamanho - 1) {
+        while (j >= 0 && vetor[j] > sorted) {
             {
-                int temp = vetor[i];
-                vetor[i] = vetor[i + 1];
-                vetor[i + 1] = temp;
-
+                vetor[j+1] = vetor[j];
+                j = j - 1;
             }
+            vetor[j+1] = sorted;
         }
     }
 
