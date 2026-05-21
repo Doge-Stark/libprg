@@ -71,5 +71,8 @@ typedef struct dicionario dicionario_t;
 /* === ARVORE === */
 
 typedef struct no_arvore no_arvore_t;
+void travessia_preordem(no_arvore_t* raiz);
+void travessia_emordem(no_arvore_t* raiz);
+void travessia_posordem(no_arvore_t* raiz);
 
 #endif

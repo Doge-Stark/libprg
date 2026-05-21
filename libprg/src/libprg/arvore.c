@@ -37,13 +37,26 @@ no_arvore_t* adicionar(no_arvore_t* raiz, int dado) {
 
   return raiz;
 }
+
 no_arvore_t* remover(int dado) {
+
+
 
 
 
 
 }
 
+no_arvore_t* destruir(no_arvore_t* raiz){}
 
+void travessia_preordem(no_arvore_t* raiz){}
 
-no_arvore_t* destruir(){}
+void travessia_emordem(no_arvore_t* raiz) {
+
+  if (raiz != NULL)
+    travessia_emordem(raiz->filho_esquerda);
+    printf("%d, ", raiz->dado);
+    travessia_emordem(raiz->filho_direita);
+}
+
+void travessia_posordem(no_arvore_t* raiz){}
