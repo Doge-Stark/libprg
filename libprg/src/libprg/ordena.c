@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 int *merge(int *vetor, int esquerda, int meio, int direita);
+int particiona(int *vetor, int esquerda, int direita);
 
 int *buble_sort(int *vetor, int tamanho) {
     int aux = 0;
@@ -63,7 +64,7 @@ int *selection_sort(int *vetor, int tamanho) {
 int *merge_sort(int *vetor, int esquerda, int direita) {
     if (esquerda < direita) {
         int meio = esquerda + (direita - esquerda) / 2;
-        merge_sort(vetor, esquerda, direita);
+        merge_sort(vetor, esquerda, meio);
         merge_sort(vetor, meio + 1, direita);
         merge(vetor, esquerda, meio, direita);
     }
@@ -71,8 +72,8 @@ int *merge_sort(int *vetor, int esquerda, int direita) {
 }
 
 int *merge(int *vetor, int esquerda, int meio, int direita) {
-    int aux[direita - esquerda + 1];
 
+    int aux[direita - esquerda + 1];
     int i = esquerda, j = (meio + 1), k = 0;
 
     while (i <= meio && j <= direita) {
@@ -98,22 +99,40 @@ int *merge(int *vetor, int esquerda, int meio, int direita) {
         k = k + 1;
     }
 
-    for (int i = 0; i < esquerda; i++) {
+    for (int i = esquerda; i <= direita ; i++) {
         vetor[i] = aux[i - esquerda];
     }
 }
 
 int *quick_sort(int *vetor, int esquerda, int direita) {
 
+    if (esquerda < direita) {
 
+        int pivo = particiona(vetor, esquerda, direita);
+        quick_sort(vetor, esquerda, pivo - 1);
+        quick_sort(vetor, pivo + 1, direita);
+    }
 
+    return vetor;
+}
 
+int particiona(int *vetor, int esquerda, int direita) {
 
+    int pivo = vetor[direita];
+    int i = esquerda - 1;
 
+    for (int j = esquerda; j <= direita - 1; j++) {
+        if (vetor[j] <= pivo) {
+            i = i + 1;
+            int temp = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = temp;
+        }
+    }
+     i = i + 1;
+     int temp = vetor[i];
+     vetor[i] = vetor[direita];
+     vetor[direita] = temp;
 
-
-
-
-
-
+    return i;
 }
