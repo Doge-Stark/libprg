@@ -59,7 +59,7 @@ int fila_vazia(fila_t* fila)
 
 
 int inicio_fila(fila_t* fila) {
-    if (fila_vazia(fila)) exit(EXIT_FAILURE);
+    if (fila_vazia(fila) == true) exit(EXIT_FAILURE);
     int inicio = fila->elementos[fila->inicio];
     return inicio;
 

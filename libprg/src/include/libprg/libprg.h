@@ -48,6 +48,13 @@ bool remover_lista_encadeada(no_t **inicio, int dado);
 
 /* === LISTA ENCADEADA DUPLA === */
 
+typedef struct no_duplo no_duplo_t;
+
+no_duplo_t* criar_lista_encadeada_dupla(int dado);
+void inserir_lista_encadeada_dupla(no_duplo_t** inicio, int dado);
+no_duplo_t* buscar_lista_encadeada_dupla(int dado, no_duplo_t **inicio);
+void Destruir_lista_encadeada_dupla(no_duplo_t **inicio);
+bool remover_lista_encadeada_dupla(no_duplo_t **inicio, int dado);
 
 /* === AlGORITIMOS DE ORDENAÇÃO === */
 
@@ -82,5 +89,19 @@ no_arvore_t* destruir_arvore(no_arvore_t* raiz);
 void travessia_preordem(no_arvore_t* raiz);
 void travessia_emordem(no_arvore_t* raiz);
 void travessia_posordem(no_arvore_t* raiz);
+
+/* === ARVORE AVL === */
+
+typedef struct noavl noavl_t;
+
+noavl_t* criar_no_avl(int dado);
+int altura_avl(noavl_t* raiz);
+int fator_balanceamento(noavl_t* raiz);
+noavl_t* adicionar_noavl(noavl_t* raiz, int dado);
+noavl_t* rotacao_esquerda(noavl_t* raiz);
+noavl_t* rotacao_direita(noavl_t* v);
+noavl_t* rotacao_dupla_esquerda(noavl_t* v);
+noavl_t* rotacao_dupla_direita(noavl_t* v);
+noavl_t* balancear(noavl_t* v);
 
 #endif
