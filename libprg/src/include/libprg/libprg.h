@@ -51,26 +51,34 @@ bool remover_lista_encadeada(no_t **inicio, int dado);
 
 /* === AlGORITIMOS DE ORDENAÇÃO === */
 
-/* --> AlGORITIMOS TROCA E SELEÇÃO <-- */
-
+// Troca e seleção;
 int* buble_sort(int *vetor, int tamanho);
 int* insertion_sort(int *vetor, int tamanho);
 int* selection_sort(int *vetor, int tamanho);
 
-/* --> AlGORITIMOS DIVISÃO E CONQUISTA <-- */
-
+// Divisão e conquista;
 int* merge_sort(int *vetor, int inicio ,int direita );
 int* quick_sort(int *vetor, int esquerda, int direita );
-
 
 /* === TABELA DE DISPERSÃO === */
 
 typedef struct noh noh_t;
 typedef struct dicionario dicionario_t;
 
+dicionario_t* criar_dicionario(int n);
+int hash(char* chave,int n);
+int inserir_hash(dicionario_t* d, char* chave,int valor);
+
 /* === ARVORE === */
 
 typedef struct no_arvore no_arvore_t;
+
+no_arvore_t* criar_no(int dado);
+no_arvore_t* adicionar(no_arvore_t* raiz, int dado);
+no_arvore_t* remover(no_arvore_t* raiz, int dado);
+no_arvore_t* destruir_arvore(no_arvore_t* raiz);
+
+// Busca na arvore binária;
 void travessia_preordem(no_arvore_t* raiz);
 void travessia_emordem(no_arvore_t* raiz);
 void travessia_posordem(no_arvore_t* raiz);
