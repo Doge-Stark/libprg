@@ -7,38 +7,33 @@
 #include <stdlib.h>
 
 typedef struct noavl {
-
     int dado;
-    noavl_t* esquerda;
-    noavl_t* direita;
+    noavl_t *esquerda;
+    noavl_t *direita;
     int altura;
+} noavl_t;
 
-}noavl_t;
-
-noavl_t* criar_no_avl(int dado) {
-
-    noavl_t* no = malloc(sizeof(noavl_t));
+noavl_t *criar_no_avl(int dado) {
+    noavl_t *no = malloc(sizeof(noavl_t));
     no->dado = dado;
     no->esquerda = NULL;
     no->direita = NULL;
-    no->altura = 0;
-
+    no->altura = 1;
 }
 
-int altura_avl(noavl_t* raiz) {
+int altura_avl(noavl_t *raiz) {
     if (raiz == NULL) return 0;
 
     return raiz->altura;
 }
 
-int fator_balanceamento(noavl_t* raiz) {
+int fator_balanceamento(noavl_t *raiz) {
     if (raiz == NULL) return 0;
 
     return altura_avl(raiz->esquerda) - altura_avl(raiz->direita);
 }
 
-noavl_t* adicionar_noavl(noavl_t* raiz, int dado) {
-
+noavl_t *adicionar_noavl(noavl_t *raiz, int dado) {
     // Verifica se o nó está vazio e cria um novo nó;
     if (raiz == NULL) return criar_no_avl(dado);
 
@@ -46,7 +41,7 @@ noavl_t* adicionar_noavl(noavl_t* raiz, int dado) {
     if (raiz->dado < dado) { raiz->direita = adicionar_noavl(raiz->direita, dado); }
 
     // verifica se o dado e menor que a raiz e aloca ele para o nó filho da esquerda ( Recursivamente );
-    if (raiz->dado > dado) { raiz->esquerda = adicionar_noavl(raiz->esquerda,dado); }
+    if (raiz->dado > dado) { raiz->esquerda = adicionar_noavl(raiz->esquerda, dado); }
 
     raiz->altura = max(altura_avl(raiz->esquerda), altura_avl(raiz->direita)) + 1;
 
@@ -55,10 +50,50 @@ noavl_t* adicionar_noavl(noavl_t* raiz, int dado) {
     return raiz;
 }
 
-noavl_t* rotacao_esquerda(noavl_t* v) {
+noavl_t *remover_noavl(noavl_t *raiz) {
+    // Caso de nó sem filhos;
+    if (raiz->direita == NULL && raiz->esquerda == NULL) {
+        free(raiz);
+        balancear(raiz);
+    }
 
-    noavl_t* u = v->direita;
-    noavl_t* T2 = u->esquerda;
+    // Caso de nó com apenas um filho;
+    if (raiz->direita == NULL || raiz->esquerda == NULL) {
+        if (raiz->direita == NULL) {
+            noavl_t *temp = raiz->esquerda;
+            raiz = raiz->esquerda;
+            free(raiz->esquerda);
+        }
+        if (raiz->esquerda == NULL) {
+            noavl_t *temp = raiz->direita;
+            raiz = raiz->direita;
+            free(raiz->direita);
+        }
+    }
+
+    // caso de nó com dois filhos;
+    if (raiz->direita != NULL && raiz->esquerda != NULL) {
+        noavl_t *predecessor = raiz->esquerda;
+        noavl_t *pai_predecessor = raiz;
+        while (predecessor->direita != NULL) {
+            pai_predecessor = predecessor;
+            predecessor = predecessor->direita;
+        }
+        raiz->dado = predecessor->dado;
+        if (pai_predecessor->direita == predecessor) {
+            pai_predecessor->direita = pai_predecessor->esquerda;
+        } else {
+            pai_predecessor->esquerda = pai_predecessor->esquerda;
+        }
+        free(predecessor);
+    }
+    balancear(raiz);
+    return raiz;
+}
+
+noavl_t *rotacao_esquerda(noavl_t *v) {
+    noavl_t *u = v->direita;
+    noavl_t *T2 = u->esquerda;
 
     // rotaciona
     u->esquerda = v;
@@ -71,16 +106,14 @@ noavl_t* rotacao_esquerda(noavl_t* v) {
     return u;
 }
 
-noavl_t* rotacao_dupla_esquerda(noavl_t* v){
-
+noavl_t *rotacao_dupla_esquerda(noavl_t *v) {
     v->direita = rotacao_direita(v->direita);
     return rotacao_esquerda(v);
 }
 
-noavl_t* rotacao_direita(noavl_t* v) {
-
-    noavl_t* u = v->esquerda;
-    noavl_t* T2 = u->direita;
+noavl_t *rotacao_direita(noavl_t *v) {
+    noavl_t *u = v->esquerda;
+    noavl_t *T2 = u->direita;
 
     // rotaciona
     u->direita = v;
@@ -91,27 +124,27 @@ noavl_t* rotacao_direita(noavl_t* v) {
     u->altura = max(altura_avl(u->esquerda), altura_avl(u->direita)) + 1;
 
     return u;
-
 }
 
-noavl_t* rotacao_dupla_direita(noavl_t* v) {
-
+noavl_t *rotacao_dupla_direita(noavl_t *v) {
     v->esquerda = rotacao_esquerda(v->esquerda);
     return rotacao_direita(v);
 }
 
-noavl_t* balancear(noavl_t* v) {
+noavl_t *balancear(noavl_t *v) {
     int fb = fator_balanceamento(v);
 
     if (fb > 1) {
         if (fator_balanceamento(v->esquerda) > 0) {
             return rotacao_direita(v);
-        }return rotacao_esquerda(v);
+        }
+        return rotacao_esquerda(v);
     }
 
     if (fb < -1) {
         if (fator_balanceamento(v->direita) < 0) {
             return rotacao_esquerda(v);
-        }return rotacao_direita(v);
+        }
+        return rotacao_direita(v);
     }
 }
