@@ -50,6 +50,8 @@ noavl_t *adicionar_noavl(noavl_t *raiz, int dado) {
     return raiz;
 }
 
+//TODO Aṕos refazer a função remover da arvoce, colar aqui e adicionar o fator de balanceamento;
+
 noavl_t *remover_noavl(noavl_t *raiz) {
     // Caso de nó sem filhos;
     if (raiz->direita == NULL && raiz->esquerda == NULL) {
