@@ -50,47 +50,35 @@ noavl_t *adicionar_noavl(noavl_t *raiz, int dado) {
     return raiz;
 }
 
-//TODO Aṕos refazer a função remover da arvoce, colar aqui e adicionar o fator de balanceamento;
+noavl_t *remover_noavl(noavl_t *raiz, int valor) {
+    if (raiz == NULL) return NULL;
 
-noavl_t *remover_noavl(noavl_t *raiz) {
-    // Caso de nó sem filhos;
-    if (raiz->direita == NULL && raiz->esquerda == NULL) {
-        free(raiz);
-        balancear(raiz);
-    }
-
-    // Caso de nó com apenas um filho;
-    if (raiz->direita == NULL || raiz->esquerda == NULL) {
-        if (raiz->direita == NULL) {
-            noavl_t *temp = raiz->esquerda;
-            raiz = raiz->esquerda;
-            free(raiz->esquerda);
-        }
-        if (raiz->esquerda == NULL) {
-            noavl_t *temp = raiz->direita;
-            raiz = raiz->direita;
-            free(raiz->direita);
-        }
-    }
-
-    // caso de nó com dois filhos;
-    if (raiz->direita != NULL && raiz->esquerda != NULL) {
-        noavl_t *predecessor = raiz->esquerda;
-        noavl_t *pai_predecessor = raiz;
-        while (predecessor->direita != NULL) {
-            pai_predecessor = predecessor;
-            predecessor = predecessor->direita;
-        }
-        raiz->dado = predecessor->dado;
-        if (pai_predecessor->direita == predecessor) {
-            pai_predecessor->direita = pai_predecessor->esquerda;
+    if (valor < raiz->dado) {
+        raiz->esquerda = remover_noavl(raiz->esquerda,valor);
+    } else if (valor > raiz->dado) {
+        raiz->direita = remover_noavl(raiz->direita,valor);
+    } else {
+        if ((raiz->esquerda == NULL) || (raiz->direita == NULL)) { // 1 ou 0 filhos
+            noavl_t* temp = raiz->esquerda ? raiz->esquerda : raiz->direita;
+            if (temp == NULL) {
+                free(raiz);
+                return NULL;
+            }
+            free(raiz);
+            return temp;
         } else {
-            pai_predecessor->esquerda = pai_predecessor->esquerda;
+            noavl_t * temp = raiz->direita;
+            while (temp != NULL && temp->esquerda != NULL) {
+                temp = temp->esquerda;
+            }
+            raiz->dado = temp->dado;
+            raiz->direita = remover_noavl(raiz->direita, temp->dado);
         }
-        free(predecessor);
     }
-    balancear(raiz);
+
+    raiz = balancear(raiz);
     return raiz;
+
 }
 
 noavl_t *rotacao_esquerda(noavl_t *v) {

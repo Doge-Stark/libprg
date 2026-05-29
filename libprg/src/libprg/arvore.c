@@ -33,49 +33,32 @@ no_arvore_t *adicionar(no_arvore_t *raiz, int dado) {
     return raiz;
 }
 
-//TODO refazer o remover;
+no_arvore_t *remover_noa (no_arvore_t * raiz, int valor) {
 
-no_arvore_t *remover(no_arvore_t *raiz, int dado) {
-
-    // caso da raiz nula;
     if (raiz == NULL) return NULL;
 
-    // caso de nó sem filhos;
-    if (raiz->filho_direita == NULL && raiz->filho_esquerda == NULL) {
-        free(raiz);
-    }
-
-    // caso de nó com apenas um filho;
-    if (raiz->filho_direita == NULL || raiz->filho_esquerda == NULL) {
-        if (raiz->filho_direita == NULL) {
-            no_arvore_t *temp = raiz;
-            raiz = raiz->filho_esquerda;
-            free(temp);
+    if (valor < raiz->dado) {
+        raiz->filho_esquerda = remover_noa(raiz->filho_esquerda,valor);
+    } else if (valor > raiz->dado) {
+        raiz->filho_direita = remover_noa(raiz->filho_direita,valor);
+    } else {
+        if ((raiz->filho_esquerda == NULL) || (raiz->filho_direita == NULL)) { // 1 ou 0 filhos
+            no_arvore_t* temp = raiz->filho_esquerda ? raiz->filho_esquerda : raiz->filho_direita;
+            if (temp == NULL) {
+                free(raiz);
+                return NULL;
+            }
+            free(raiz);
+            return temp;
         } else {
-            no_arvore_t *temp = raiz;
-            raiz = raiz->filho_direita;
-            free(temp);
+            no_arvore_t * temp = raiz->filho_direita;
+            while (temp != NULL && temp->filho_esquerda != NULL) {
+                temp = temp->filho_esquerda;
+            }
+            raiz->dado = temp->dado;
+            raiz->filho_direita = remover_noa(raiz->filho_direita, temp->dado);
         }
     }
-
-    // caso de nó com dois filhos;
-    if (raiz->filho_direita != NULL && raiz->filho_esquerda != NULL) {
-        no_arvore_t *predecessor = raiz->filho_esquerda;
-        no_arvore_t *pai_predecessor = raiz;
-
-        while (predecessor->filho_direita != NULL) {
-            pai_predecessor = predecessor;
-            predecessor = predecessor->filho_direita;
-        }
-        raiz->dado = predecessor->dado;
-        if (pai_predecessor->filho_direita == predecessor) {
-            pai_predecessor->filho_direita = pai_predecessor->filho_esquerda;
-        } else {
-            pai_predecessor->filho_esquerda = pai_predecessor->filho_esquerda;
-        }
-        free(predecessor);
-    }
-
     return raiz;
 }
 
