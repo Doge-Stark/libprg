@@ -45,10 +45,6 @@ no_t* buscar_lista_encadeada(int dado, no_t **inicio) {
 
 }
 
-
-
-
-
 bool remover_lista_encadeada(no_t **inicio, int dado) {
     no_t* atual = *inicio;
     no_t* anterior = NULL;
@@ -74,7 +70,7 @@ void Destruir_lista_encadeada(no_t **inicio) {
 
     no_t* atual = *inicio;
 
-    while ( *inicio != NULL ) {
+    while ( *inicio != NULL ){
         no_t* proximo = atual->proximo;
         free(atual);
         atual = proximo;

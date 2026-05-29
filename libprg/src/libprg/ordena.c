@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 int *merge(int *vetor, int esquerda, int meio, int direita);
+
 int particiona(int *vetor, int esquerda, int direita);
 
 int *buble_sort(int *vetor, int tamanho) {

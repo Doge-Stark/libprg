@@ -30,11 +30,11 @@ int tamanho_fila(fila_t* fila);
 
 /* === LISTA === */
 
-// typedef struct lista lista_linear_t;
-// lista_linear_t* criar_lista(int capacidade);
-// int buscar(lista_linear_t* lista, int valor);
-// void inserir(lista_linear_t* lista, int valor);
-// void retirar(lista_linear_t* lista, int valor);
+typedef struct lista lista_linear_t;
+lista_linear_t* criar_lista(bool ordenada);
+int buscar(lista_linear_t* lista, int valor);
+void inserir(lista_linear_t* lista, int valor);
+void retirar(lista_linear_t* lista, int valor);
 
 /* === LISTA ENCADEADA === */
 
@@ -52,7 +52,7 @@ typedef struct no_duplo no_duplo_t;
 
 no_duplo_t* criar_lista_encadeada_dupla(int dado);
 void inserir_lista_encadeada_dupla(no_duplo_t** inicio, int dado);
-no_duplo_t* buscar_lista_encadeada_dupla(int dado, no_duplo_t **inicio);
+no_duplo_t* buscar_lista_encadeada_dupla(int dado, no_duplo_t *inicio);
 void Destruir_lista_encadeada_dupla(no_duplo_t **inicio);
 bool remover_lista_encadeada_dupla(no_duplo_t **inicio, int dado);
 

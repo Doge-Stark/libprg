@@ -57,7 +57,6 @@ int fila_vazia(fila_t* fila)
     if (fila->tamanho == 0) return true;
 }
 
-
 int inicio_fila(fila_t* fila) {
     if (fila_vazia(fila) == true) exit(EXIT_FAILURE);
     int inicio = fila->elementos[fila->inicio];
@@ -65,6 +64,7 @@ int inicio_fila(fila_t* fila) {
 
 
 }
+
 int fila_fim(fila_t* fila)
 {
     if (fila_vazia(fila)) exit(EXIT_FAILURE);
