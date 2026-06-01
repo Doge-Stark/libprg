@@ -33,8 +33,10 @@ int tamanho_fila(fila_t* fila);
 typedef struct lista lista_linear_t;
 lista_linear_t* criar_lista(bool ordenada);
 int buscar(lista_linear_t* lista, int valor);
-void inserir(lista_linear_t* lista, int valor);
-void retirar(lista_linear_t* lista, int valor);
+int inserir(lista_linear_t* lista, int valor);
+lista_linear_t* retirar(lista_linear_t* lista, int valor);
+lista_linear_t* ordenar(lista_linear_t* lista);
+lista_linear_t* alterar(lista_linear_t* lista, bool ordenada);
 
 /* === LISTA ENCADEADA === */
 

@@ -6,6 +6,11 @@
 #include <stdbool.h>
 #include "libprg/libprg.h"
 
+// FUNÇÕES ULTILIZADAS PELO BUSCAR;
+
+int buscar_linear(lista_linear_t* lista, int valor);
+int buscar_binario(lista_linear_t* lista, int valor);
+
 #define CAPACIDADE_INICIAL 10
 
 typedef struct lista {
@@ -29,7 +34,7 @@ lista_linear_t* criar_lista(bool ordenada)
 
 }
 
-void inserir(lista_linear_t* lista, int valor)
+int inserir(lista_linear_t* lista, int valor)
 {
 
     if (lista->tamanho == lista->capacidade)
@@ -38,7 +43,7 @@ void inserir(lista_linear_t* lista, int valor)
         int* temp = realloc(lista->elementos, nova_capacidade * sizeof(int));
 
         if (temp == NULL)
-            {printf("Falha na realocação de memoria."); return;}
+            {printf("Falha na realocação de memoria."); return 0;}
 
         lista->elementos = temp;
         lista->capacidade = nova_capacidade;
@@ -46,34 +51,101 @@ void inserir(lista_linear_t* lista, int valor)
 
     lista->elementos[lista->tamanho] = valor;
     lista->tamanho++;
-    lista->capacidade++;
+    printf("Elemento inserido na lista com sucesso!");
+}
+
+lista_linear_t* retirar(lista_linear_t* lista, int alvo)
+{
+    int temp = buscar_linear(lista, alvo);
+
+    for (int i = temp; i < lista->tamanho - 1; i++)
+    {
+        lista->elementos[i] = lista->elementos[i + 1];
+    }
+
+    lista->tamanho--;
+
+    if (lista->ordenada == true)
+    {
+        ordenar(lista);
+    }
+    return lista;
 }
 
 int buscar(lista_linear_t* lista, int valor)
 {
+    int indice;
 
-    for (int i = lista->tamanho-1; i > 0 ; i--)
+    if (lista->ordenada == true)
     {
-        if ( lista->elementos[i] == valor )
-        {
-            printf("O iten %d está na posição %d da lista.", lista->elementos[i], i);
-            return i;
-        }
-
-            printf("O iten não está na lista");
-            return -1;
-
+        indice = buscar_binario(lista, valor);
     }
-
+    indice = buscar_linear(lista, valor);
 }
 
-void retirar(lista_linear_t* lista, int alvo){}
+lista_linear_t* ordenar(lista_linear_t* lista)
+{
+    selection_sort(lista->elementos, lista->tamanho);
+    return lista;
+}
 
-//alterar(){}
-//ordenar(){}
+int buscar_linear(lista_linear_t* lista, int valor)
+{
+    for ( int i = 0; i < lista->tamanho; i++ )
+    {
+        if ( lista->elementos[i] == valor )
+            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
+            return i;
+    }
+    printf("Elemento não encontrado.");
+    return false;
+};
+
+int buscar_binario(lista_linear_t* lista, int valor)
+{
+    int temp; lista->tamanho / 2;
+
+    // caso do valor ser o elemento do meio da lista;
+    if (lista->elementos[temp] == valor) return printf("O valor : %d , está na %d° posição da lista.", lista->elementos[temp], temp );
+
+    // caso do valor ser maior que o elemento do meio da lista;
+    if ( lista->elementos[temp] < valor)
+    {
+        for ( int i = temp; i < lista->tamanho; i++ )
+        {
+            if (lista->elementos[temp] == valor);
+            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
+            return temp;
+        }
+    }
+
+    // caso do valor ser menor que o meio da lista;
+    if ( lista->elementos[temp] > valor)
+    {
+        for ( int i = temp; i > 0; i-- )
+        {
+            if (lista->elementos[temp] == valor);
+            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
+            return temp;
+        }
+    }
+
+    printf("Elemento não encontrado.");
+    return false;
+
+};
+
+lista_linear_t* alterar(lista_linear_t* lista, bool ordenada)
+{
+    if (lista->ordenada == true)
+    {
+       lista->ordenada = false;
+    }
+    lista->ordenada = true;
+
+    return lista;
+}
+
+// TODO Perguntar ao professor sobre a função combinar
+
 //combinar(){}
-//destruir(){}
-//buscar { if(lista->ordenada) {indice = buscar_binario } else { indice = buscar_linear } }
-//buscar_linear(){};
-//buscar_binario(){};
-//buscar_simples(){};

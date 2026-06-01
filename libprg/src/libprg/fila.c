@@ -9,11 +9,11 @@
 
 typedef struct fila {
 
-    int* elementos;
+    int* elementos; // elementos quardados
     int capacidade; // quantos elementos são possiveis caber na fila;
-    int tamanho; // quantidade de elementos na fila;
-    int inicio;
-    int fim;
+    int tamanho;    // quantidade de elementos na fila;
+    int inicio;     // começo da fila
+    int fim;        // fim da fia
 
 }fila_t;
 
@@ -61,7 +61,6 @@ int inicio_fila(fila_t* fila) {
     if (fila_vazia(fila) == true) exit(EXIT_FAILURE);
     int inicio = fila->elementos[fila->inicio];
     return inicio;
-
 
 }
 

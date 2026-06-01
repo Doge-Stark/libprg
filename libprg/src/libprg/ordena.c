@@ -2,8 +2,6 @@
 // Created by aluno on 07/05/2026.
 //
 #include "libprg/libprg.h"
-#include <stdbool.h>
-#include <stdio.h>
 
 int *merge(int *vetor, int esquerda, int meio, int direita);
 
