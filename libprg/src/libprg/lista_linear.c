@@ -76,15 +76,13 @@ int lista_linear_tamanho(lista_linear_t* lista) {
     return lista->tamanho;
 }
 
-int buscar_linear(lista_linear_t* lista, int valor)
+int buscar(lista_linear_t* lista, int valor)
 {
-    int indice;
-
     if (lista->ordenada == true)
     {
-        indice = buscar_binario(lista, valor);
+        return buscar_binario(lista, valor);
     }
-    indice = buscar_linear(lista, valor);
+    return buscar_linear(lista, valor);
 }
 
 lista_linear_t* ordenar_lista_linear(lista_linear_t* lista)
@@ -93,7 +91,7 @@ lista_linear_t* ordenar_lista_linear(lista_linear_t* lista)
     return lista;
 }
 
-int buscar_linea(lista_linear_t* lista, int valor)
+int buscar_linear(lista_linear_t* lista, int valor)
 {
     for ( int i = 0; i < lista->tamanho; i++ )
     {
@@ -138,8 +136,9 @@ int buscar_binario(lista_linear_t* lista, int valor)
 
 };
 
-int busca_simples(lista_linear_t* lista, int indice) {
+int busca_indice(lista_linear_t* lista, int indice) {
 
+return lista->elementos[indice];
 
 }
 

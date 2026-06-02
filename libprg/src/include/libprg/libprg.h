@@ -37,16 +37,23 @@ lista_linear_t* retirar_lista_linear(lista_linear_t* lista, int valor);
 lista_linear_t* ordenar_lista_linear(lista_linear_t* lista);
 lista_linear_t* alterar_lista_linear(lista_linear_t* lista, bool ordenada);
 int lista_linear_tamanho(lista_linear_t* lista);
+int buscar(lista_linear_t* lista, int valor);
+int busca_indice(lista_linear_t* lista, int indice);
 
 /* === LISTA ENCADEADA === */
 
-typedef struct no no_t;
+typedef struct no_encadeado no_encadeado_t;
+typedef struct lista_encadeada lista_encadeada_t;
 
-no_t* criar_lista_encadeada(int dado);
-void inserir_lista_encadeada(no_t** inicio, int dado);
-no_t* buscar_lista_encadeada(int dado, no_t **inicio);
-void Destruir_lista_encadeada(no_t **inicio);
-bool remover_lista_encadeada(no_t **inicio, int dado);
+no_encadeado_t* criar_no_encadeado(int dado);
+lista_encadeada_t *criar_lista_encadeada(bool ordenada);
+void inserir_encadeada(lista_encadeada_t* lista, int dado);
+int primeiro_lista_encadeada(lista_encadeada_t *lista);
+bool remover_lista_encadeada(lista_encadeada_t* lista, int dado);
+no_encadeado_t* buscar_lista_encadeada(lista_encadeada_t* lista, int dado);
+int tamanho_lista_encadeada(lista_encadeada_t *lista);
+void imprimir_lista_encadeada(lista_encadeada_t *lista);
+void destruir_lista_encadeada(lista_encadeada_t* lista);
 
 /* === LISTA ENCADEADA DUPLA === */
 
