@@ -20,23 +20,23 @@ typedef struct fila fila_t;
 
 fila_t* criar_fila(int capacidade);
 void enfileirar_fila(fila_t* fila, int valor);
-int destruir_fila(fila_t* fila);
-int fila_vazia(fila_t* fila);
+void destruir_fila(fila_t* fila);
+bool fila_vazia(fila_t* fila);
 int inicio_fila(fila_t* fila);
 int fila_fim(fila_t* fila);
-int fila_cheia(fila_t* fila);
+bool fila_cheia(fila_t* fila);
 int desenfileirar_fila(fila_t* fila);
 int tamanho_fila(fila_t* fila);
 
 /* === LISTA === */
 
 typedef struct lista lista_linear_t;
-lista_linear_t* criar_lista(bool ordenada);
-int buscar(lista_linear_t* lista, int valor);
-int inserir(lista_linear_t* lista, int valor);
-lista_linear_t* retirar(lista_linear_t* lista, int valor);
-lista_linear_t* ordenar(lista_linear_t* lista);
-lista_linear_t* alterar(lista_linear_t* lista, bool ordenada);
+lista_linear_t* criar_lista_linear(bool ordenada);
+int inserir_lista_linear(lista_linear_t* lista, int valor);
+lista_linear_t* retirar_lista_linear(lista_linear_t* lista, int valor);
+lista_linear_t* ordenar_lista_linear(lista_linear_t* lista);
+lista_linear_t* alterar_lista_linear(lista_linear_t* lista, bool ordenada);
+int lista_linear_tamanho(lista_linear_t* lista);
 
 /* === LISTA ENCADEADA === */
 

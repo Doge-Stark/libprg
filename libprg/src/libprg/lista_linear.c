@@ -22,7 +22,7 @@ typedef struct lista {
 
 }lista_linear_t;
 
-lista_linear_t* criar_lista(bool ordenada)
+lista_linear_t* criar_lista_linear(bool ordenada)
 {
 
     lista_linear_t* lista = malloc(sizeof(lista_linear_t));
@@ -34,7 +34,7 @@ lista_linear_t* criar_lista(bool ordenada)
 
 }
 
-int inserir(lista_linear_t* lista, int valor)
+int inserir_lista_linear(lista_linear_t* lista, int valor)
 {
 
     if (lista->tamanho == lista->capacidade)
@@ -51,10 +51,9 @@ int inserir(lista_linear_t* lista, int valor)
 
     lista->elementos[lista->tamanho] = valor;
     lista->tamanho++;
-    printf("Elemento inserido na lista com sucesso!");
 }
 
-lista_linear_t* retirar(lista_linear_t* lista, int alvo)
+lista_linear_t* retirar_lista_linear(lista_linear_t* lista, int alvo)
 {
     int temp = buscar_linear(lista, alvo);
 
@@ -67,12 +66,17 @@ lista_linear_t* retirar(lista_linear_t* lista, int alvo)
 
     if (lista->ordenada == true)
     {
-        ordenar(lista);
+        ordenar_lista_linear(lista);
     }
     return lista;
 }
 
-int buscar(lista_linear_t* lista, int valor)
+int lista_linear_tamanho(lista_linear_t* lista) {
+
+    return lista->tamanho;
+}
+
+int buscar_linear(lista_linear_t* lista, int valor)
 {
     int indice;
 
@@ -83,18 +87,17 @@ int buscar(lista_linear_t* lista, int valor)
     indice = buscar_linear(lista, valor);
 }
 
-lista_linear_t* ordenar(lista_linear_t* lista)
+lista_linear_t* ordenar_lista_linear(lista_linear_t* lista)
 {
     selection_sort(lista->elementos, lista->tamanho);
     return lista;
 }
 
-int buscar_linear(lista_linear_t* lista, int valor)
+int buscar_linea(lista_linear_t* lista, int valor)
 {
     for ( int i = 0; i < lista->tamanho; i++ )
     {
         if ( lista->elementos[i] == valor )
-            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
             return i;
     }
     printf("Elemento não encontrado.");
@@ -135,7 +138,12 @@ int buscar_binario(lista_linear_t* lista, int valor)
 
 };
 
-lista_linear_t* alterar(lista_linear_t* lista, bool ordenada)
+int busca_simples(lista_linear_t* lista, int indice) {
+
+
+}
+
+lista_linear_t* alterar_lista_linear(lista_linear_t* lista, bool ordenada)
 {
     if (lista->ordenada == true)
     {

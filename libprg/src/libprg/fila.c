@@ -9,86 +9,109 @@
 
 typedef struct fila {
 
-    int* elementos; // elementos quardados
-    int capacidade; // quantos elementos são possiveis caber na fila;
-    int tamanho;    // quantidade de elementos na fila;
-    int inicio;     // começo da fila
-    int fim;        // fim da fia
+    int *elementos;   // elementos armazenados
+    int capacidade;   // capacidade máxima
+    int tamanho;      // quantidade atual de elementos
+    int inicio;       // índice do primeiro elemento
+    int fim;          // próxima posição de inserção
 
-}fila_t;
+} fila_t;
 
-fila_t* criar_fila(int capacidade) {
+fila_t* criar_fila(int capacidade)
+{
+    if (capacidade <= 0)
+        return NULL;
 
-    fila_t* fila = malloc(sizeof(fila_t));
+    fila_t *fila = malloc(sizeof(fila_t));
+
+    if (fila == NULL)
+        return NULL;
+
     fila->elementos = malloc(sizeof(int) * capacidade);
+
+    if (fila->elementos == NULL) {
+        free(fila);
+        return NULL;
+    }
+
     fila->inicio = 0;
     fila->fim = 0;
     fila->tamanho = 0;
     fila->capacidade = capacidade;
 
     return fila;
+}
 
- }
+bool fila_vazia(fila_t *fila)
+{
+    return fila->tamanho == 0;
+}
 
-void enfileirar_fila(fila_t* fila, int valor) {
+bool fila_cheia(fila_t *fila)
+{
+    return fila->tamanho == fila->capacidade;
+}
 
-    if (fila->tamanho >= fila->capacidade) exit(EXIT_FAILURE);
+void enfileirar_fila(fila_t *fila, int valor)
+{
+    if (fila_cheia(fila)) {
+        fprintf(stderr, "Erro: fila cheia (overflow)\n");
+        exit(EXIT_FAILURE);
+    }
 
     fila->elementos[fila->fim] = valor;
     fila->fim = (fila->fim + 1) % fila->capacidade;
     fila->tamanho++;
 }
 
-int desenfileirar_fila(fila_t* fila) {
-    if (fila->tamanho == 0) {
-        printf("Erro: Fila vazia(underflow)");
+int desenfileirar_fila(fila_t *fila)
+{
+    if (fila_vazia(fila)) {
         exit(EXIT_FAILURE);
     }
 
     int valor = fila->elementos[fila->inicio];
+
     fila->inicio = (fila->inicio + 1) % fila->capacidade;
     fila->tamanho--;
 
     return valor;
 }
 
-int fila_vazia(fila_t* fila)
+int inicio_fila(fila_t *fila)
 {
-    if (fila->tamanho == 0) return true;
+    if (fila_vazia(fila)) {
+        fprintf(stderr, "Erro: fila vazia\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return fila->elementos[fila->inicio];
 }
 
-int inicio_fila(fila_t* fila) {
-    if (fila_vazia(fila) == true) exit(EXIT_FAILURE);
-    int inicio = fila->elementos[fila->inicio];
-    return inicio;
-
-}
-
-int fila_fim(fila_t* fila)
+int fim_fila(fila_t *fila)
 {
-    if (fila_vazia(fila)) exit(EXIT_FAILURE);
-    int fim_corrigido = fila->fim - 1;
-    if (fim_corrigido < 0 ) fim_corrigido = fila->capacidade - 1;
-    return fila->elementos[fim_corrigido];
+    if (fila_vazia(fila)) {
+        fprintf(stderr, "Erro: fila vazia\n");
+        exit(EXIT_FAILURE);
+    }
 
+    int indice_fim =
+        (fila->fim - 1 + fila->capacidade) % fila->capacidade;
+
+    return fila->elementos[indice_fim];
 }
 
-int fila_cheia(fila_t* fila)
+int tamanho_fila(fila_t *fila)
 {
-    if (fila->tamanho == fila->capacidade) return true;
-
+    return fila->tamanho;
 }
 
-int destruir_fila(fila_t* fila) {
+void destruir_fila(fila_t *fila)
+{
+    if (fila == NULL)
+        return;
+
     free(fila->elementos);
     free(fila);
-
-    return 0;
-}
-
-int tamanho_fila(fila_t* fila) {
-
-    int tamanho = fila->tamanho;
-    return tamanho;
 }
 
