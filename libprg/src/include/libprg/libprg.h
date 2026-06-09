@@ -82,8 +82,10 @@ typedef struct noh noh_t;
 typedef struct dicionario dicionario_t;
 
 dicionario_t* criar_dicionario(int n);
-int hash(char* chave,int n);
 int inserir_hash(dicionario_t* d, char* chave,int valor);
+int buscar_hash(dicionario_t *d, char *chave, int *valor);
+int remover_hash(dicionario_t *d, char *chave);
+void imprimir_tabela(dicionario_t *d);
 
 /* === ARVORE === */
 

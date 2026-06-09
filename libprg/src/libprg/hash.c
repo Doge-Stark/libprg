@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "libprg/libprg.h"
 #include <string.h>
+#include <stdio.h>
 
 int hash(char* chave,int n);
 
@@ -45,11 +46,16 @@ int hash(char* chave,int n){
     return soma % n;
 }
 
-int inserir_hash(dicionario_t* d, char* chave,int valor) {
+int inserir_hash(dicionario_t* d, char* chave, int valor) {
 
-    int indice = hash(chave,d->tamanho);
+    if (d == NULL || chave == NULL)
+        return 1;
+
+    int indice = hash(chave, d->tamanho);
+
     noh_t* no = malloc(sizeof(noh_t));
-    if (no == NULL) return 1;
+    if (no == NULL)
+        return 1;
 
     no->chave = strdup(chave);
     if (no->chave == NULL) {
@@ -59,11 +65,75 @@ int inserir_hash(dicionario_t* d, char* chave,int valor) {
 
     no->valor = valor;
 
-    // TODO tratar colisões;
-
-    no->proximo = NULL;
-
+    no->proximo = d->vetor[indice];
     d->vetor[indice] = no;
 
     return 0;
+}
+
+int buscar_hash(dicionario_t *d, char *chave, int *valor) {
+
+    int indice = hash(chave, d->tamanho);
+
+    noh_t *atual = d->vetor[indice];
+
+    while (atual != NULL) {
+
+        if (strcmp(atual->chave, chave) == 0) {
+            *valor = atual->valor;
+            return 0;
+        }
+
+        atual = atual->proximo;
+    }
+
+    return 1;
+}
+
+int remover_hash(dicionario_t *d, char *chave) {
+
+    int indice = hash(chave, d->tamanho);
+
+    noh_t *atual = d->vetor[indice];
+    noh_t *anterior = NULL;
+
+    while (atual != NULL) {
+
+        if (strcmp(atual->chave, chave) == 0) {
+
+            if (anterior == NULL) {
+                d->vetor[indice] = atual->proximo;
+            } else {
+                anterior->proximo = atual->proximo;
+            }
+
+            free(atual->chave);
+            free(atual);
+
+            return 0;
+        }
+
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    return 1;
+}
+
+void imprimir_tabela(dicionario_t *d) {
+
+    for (int i = 0; i < d->tamanho; i++) {
+
+        noh_t *atual = d->vetor[i];
+
+        while (atual != NULL) {
+
+            printf("Indice %d -> (%s, %d)\n",
+                   i,
+                   atual->chave,
+                   atual->valor);
+
+            atual = atual->proximo;
+        }
+    }
 }
