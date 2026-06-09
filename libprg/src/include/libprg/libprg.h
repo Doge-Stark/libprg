@@ -96,10 +96,15 @@ no_arvore_t* adicionar(no_arvore_t* raiz, int dado);
 no_arvore_t* remover(no_arvore_t* raiz, int dado);
 no_arvore_t* destruir_arvore(no_arvore_t* raiz);
 
+
 // Busca na arvore binária;
 void travessia_preordem(no_arvore_t* raiz);
 void travessia_emordem(no_arvore_t* raiz);
 void travessia_posordem(no_arvore_t* raiz);
+int altura_arvore(no_arvore_t *raiz);
+int maior_valor(no_arvore_t *raiz);
+int menor_valor(no_arvore_t *raiz);
+
 
 /* === ARVORE AVL === */
 
