@@ -107,7 +107,7 @@ int buscar_binario(lista_linear_t* lista, int valor)
     int temp; lista->tamanho / 2;
 
     // caso do valor ser o elemento do meio da lista;
-    if (lista->elementos[temp] == valor) { printf("O valor : %d , está na %d° posição da lista.", lista->elementos[temp], temp ); return temp; }
+    if (lista->elementos[temp] == valor)  return temp;
 
     // caso do valor ser maior que o elemento do meio da lista;
     if ( lista->elementos[temp] < valor)
@@ -115,7 +115,7 @@ int buscar_binario(lista_linear_t* lista, int valor)
         for ( int i = temp; i < lista->tamanho; i++ )
         {
             if (lista->elementos[temp] == valor);
-            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
+
             return temp;
         }
     }
@@ -126,7 +126,7 @@ int buscar_binario(lista_linear_t* lista, int valor)
         for ( int i = temp; i > 0; i-- )
         {
             if (lista->elementos[temp] == valor);
-            printf("O valor : %d , está na %d° posição da lista.", lista->elementos[i], i );
+
             return temp;
         }
     }
