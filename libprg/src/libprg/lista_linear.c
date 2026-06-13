@@ -99,7 +99,7 @@ int buscar_linear(lista_linear_t* lista, int valor)
             return i;
     }
     printf("Elemento não encontrado.");
-    return false;
+    return -1;
 };
 
 int buscar_binario(lista_linear_t* lista, int valor)
@@ -125,7 +125,7 @@ int buscar_binario(lista_linear_t* lista, int valor)
         }
     }
 
-    return false;
+    return -1;
 }
 
 int busca_indice(lista_linear_t* lista, int indice) {
