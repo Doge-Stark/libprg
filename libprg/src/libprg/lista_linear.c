@@ -98,7 +98,6 @@ int buscar_linear(lista_linear_t* lista, int valor)
         if ( lista->elementos[i] == valor )
             return i;
     }
-    printf("Elemento não encontrado.");
     return -1;
 };
 
