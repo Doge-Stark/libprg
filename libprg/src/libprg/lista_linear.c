@@ -104,37 +104,29 @@ int buscar_linear(lista_linear_t* lista, int valor)
 
 int buscar_binario(lista_linear_t* lista, int valor)
 {
-    int temp; lista->tamanho / 2;
+    int inicio = 0;
+    int fim = lista->tamanho - 1;
 
-    // caso do valor ser o elemento do meio da lista;
-    if (lista->elementos[temp] == valor)  return temp;
-
-    // caso do valor ser maior que o elemento do meio da lista;
-    if ( lista->elementos[temp] < valor)
+    while (inicio <= fim)
     {
-        for ( int i = temp; i < lista->tamanho; i++ )
-        {
-            if (lista->elementos[temp] == valor);
+        int meio = (inicio + fim) / 2;
 
-            return temp;
+        if (lista->elementos[meio] == valor)
+        {
+            return meio;
+        }
+        else if (lista->elementos[meio] < valor)
+        {
+            inicio = meio + 1;
+        }
+        else
+        {
+            fim = meio - 1;
         }
     }
 
-    // caso do valor ser menor que o meio da lista;
-    if ( lista->elementos[temp] > valor)
-    {
-        for ( int i = temp; i > 0; i-- )
-        {
-            if (lista->elementos[temp] == valor);
-
-            return temp;
-        }
-    }
-
-    printf("Elemento não encontrado.");
     return false;
-
-};
+}
 
 int busca_indice(lista_linear_t* lista, int indice) {
 
