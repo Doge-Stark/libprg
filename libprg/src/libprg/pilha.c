@@ -49,7 +49,10 @@ int desempilhar(pilha_t* pilha) {
 
 int tamanho_pilha(pilha_t* pilha) {
 
-    return pilha->tamanho;
+    if (pilha_vazia(pilha)) {
+        return -1;
+    }
+    return pilha->elementos[pilha->topo];
 }
 
 int pilha_vazia(pilha_t* pilha) {return pilha->topo < 0;}
