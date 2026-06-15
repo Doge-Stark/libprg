@@ -5,6 +5,7 @@
 #define max(a, b) (a > b ? a : b)
 #include "libprg/libprg.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct noavl {
     int dado;
@@ -19,6 +20,8 @@ noavl_t *criar_no_avl(int dado) {
     no->esquerda = NULL;
     no->direita = NULL;
     no->altura = 1;
+
+    return no;
 }
 
 int altura_avl(noavl_t *raiz) {
@@ -125,16 +128,41 @@ noavl_t *balancear(noavl_t *v) {
     int fb = fator_balanceamento(v);
 
     if (fb > 1) {
-        if (fator_balanceamento(v->esquerda) > 0) {
-            return rotacao_direita(v);
+        if (fator_balanceamento(v->esquerda) < 0) {
+            return rotacao_dupla_direita(v);
+        }
+        return rotacao_direita(v);
+    }
+
+    // Desbalanceamento para a direita
+    if (fb < -1) {
+        if (fator_balanceamento(v->direita) > 0) {
+            return rotacao_dupla_esquerda(v);
         }
         return rotacao_esquerda(v);
     }
 
-    if (fb < -1) {
-        if (fator_balanceamento(v->direita) < 0) {
-            return rotacao_esquerda(v);
-        }
-        return rotacao_direita(v);
-    }
+    return v;
+}
+
+
+void travessia_preordem_avl(noavl_t *raiz) {
+    if (raiz == NULL) return;
+    printf("%d, ", raiz->dado);
+    travessia_preordem_avl(raiz->esquerda);
+    travessia_preordem_avl(raiz->direita);
+}
+
+void travessia_emordem_avl(noavl_t *raiz) {
+    if (raiz == NULL) return;
+    travessia_emordem_avl(raiz->esquerda);
+    printf("%d, ", raiz->dado);
+    travessia_emordem_avl(raiz->direita);
+}
+
+void travessia_posordem_avl(noavl_t *raiz) {
+    if (raiz == NULL) return;
+    travessia_posordem_avl(raiz->esquerda);
+    travessia_posordem_avl(raiz->direita);
+    printf("%d, ", raiz->dado);
 }

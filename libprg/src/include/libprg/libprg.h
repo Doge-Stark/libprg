@@ -121,4 +121,7 @@ noavl_t* rotacao_dupla_esquerda(noavl_t* v);
 noavl_t* rotacao_dupla_direita(noavl_t* v);
 noavl_t* balancear(noavl_t* v);
 
+void travessia_preordem_avl(noavl_t *raiz);
+void travessia_emordem_avl(noavl_t *raiz);
+void travessia_posordem_avl(noavl_t *raiz);
 #endif
